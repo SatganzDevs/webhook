@@ -8,6 +8,14 @@
   ],
   "routes": [
     {
+      "src": "//messages",
+      "dest": "./index.js"
+    },
+    {
+      "src": "/delete/messages",
+      "dest": "./index.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "/"
     }
