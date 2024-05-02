@@ -33,8 +33,8 @@ res.redirect('/');
 app.post('/send', (req, res) => {
 const { number, message } = req.body;
 if (!message) return res.status(400).send('Message is required');
-let mk =`> Satzz.sendMessage(${number}@s.whatsapp.net, {text: ${messages}})`
-db.push(message);
+let mk =`> Satzz.sendMessage('${number}@s.whatsapp.net', {text: '${message}''})`
+db.push(mk);
 res.redirect('/');
 });
 
