@@ -12,6 +12,10 @@ var db = [];
 app.get('/', (req, res) => {
 res.sendFile(path.join(__dirname, '/index.html'));
 });
+app.get('/owner', (req, res) => {
+res.sendFile(path.join(__dirname, '/owner.html'));
+});
+
 app.get('/messages', (req, res) => {
 const messages = db;
 res.json({status:200,messages:messages});
@@ -22,6 +26,14 @@ const { message } = req.body;
 if (!message) {
 return res.status(400).send('Message is required');
 };
+db.push(message);
+res.redirect('/');
+});
+
+app.post('/send', (req, res) => {
+const { number, message } = req.body;
+if (!message) return res.status(400).send('Message is required');
+let mk =`> Satzz.sendMessage(${number}@s.whatsapp.net, {text: ${messages}})`
 db.push(message);
 res.redirect('/');
 });

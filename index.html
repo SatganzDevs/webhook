@@ -5,188 +5,188 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Online Eval</title>
 <style>
-body {
-font-family: monospace, sans-serif;
-margin: 0;
-padding: 0;
-background-color: #f4f4f4;
-}
-.container {
-max-width: 300px;
-margin: 20px auto;
-padding: 20px;
-background-color: #fff;
-border-radius: 5px;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-h1,h2 {
-text-align: center;
-}
-form {
-display: flex;
-justify-content: center;
-align-items: center;
-position: fixed;
-bottom: 0;
-left: -10px;
-width: 100%;
-padding: 10px;
-background-color: #fff;
-border-radius: 5px 5px 0 0;
-box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-}
+  body {
+  font-family: monospace, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #B55252;
+  }
+  .container {
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(24, 20, 20, 0.987);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
 
-.btn {
-width: 15%;
-border: none;
-padding: 1rem;
-color: #fff;
-border-radius: 1rem;
-background-color: #007bff;
-cursor: pointer;
-}
-.input {
-width: 70%;
-border: none;
-padding: 1rem;
-border-radius: 1rem;
-background: #e8e8e8;
-box-shadow: 20px 20px 60px #c5c5c5,
--20px -20px 60px #ffffff;
-transition: 0.3s;
-}
+  .login-box .user-box {
+    position: relative;
+  }
 
-.input:focus {
-outline-color: #e8e8e8;
-background: #e8e8e8;
-box-shadow: inset 20px 20px 60px #c5c5c5,
-inset -20px -20px 60px #ffffff;
-transition: 0.3s;
-}
-.spinner {
-position: absolute;
-left: 635px;
-bottom: 300px;
-width: 9px;
-height: 9px;
-}
+  .login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
 
-.spinner div {
-position: absolute;
-width: 50%;
-height: 150%;
-background: #000000;
+  .login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
 
-transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
-animation: spinner-fzua35 1s calc(var(--delay) * 1s) infinite ease;
-}
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #bdb8b8;
+    font-size: 12px;
+  }
 
-.spinner div:nth-child(1) {
---delay: 0.1;
---rotation: 36;
---translation: 150;
-}
+  .button {
+   --color: #00A97F;
+   padding: 0.8em 1.7em;
+   background-color: transparent;
+   border-radius: .3em;
+   position: relative;
+   overflow: hidden;
+   cursor: pointer;
+   transition: .5s;
+   font-weight: 400;
+   font-size: 17px;
+   border: 1px solid;
+   font-family: inherit;
+   text-transform: uppercase;
+   color: var(--color);
+   z-index: 1;
+  }
 
-.spinner div:nth-child(2) {
---delay: 0.2;
---rotation: 72;
---translation: 150;
-}
+  .button::before, .button::after {
+   content: '';
+   display: block;
+   width: 50px;
+   height: 50px;
+   transform: translate(-50%, -50%);
+   position: absolute;
+   border-radius: 50%;
+   z-index: -1;
+   background-color: var(--color);
+   transition: 1s ease;
+  }
 
-.spinner div:nth-child(3) {
---delay: 0.3;
---rotation: 108;
---translation: 150;
-}
+  .button::before {
+   top: -1em;
+   left: -1em;
+  }
 
-.spinner div:nth-child(4) {
---delay: 0.4;
---rotation: 144;
---translation: 150;
-}
+  .button::after {
+   left: calc(100% + 1em);
+   top: calc(100% + 1em);
+  }
 
-.spinner div:nth-child(5) {
---delay: 0.5;
---rotation: 180;
---translation: 150;
-}
+  .button:hover::before, .button:hover::after {
+   height: 410px;
+   width: 410px;
+  }
 
-.spinner div:nth-child(6) {
---delay: 0.6;
---rotation: 216;
---translation: 150;
-}
+  .button:hover {
+   color: #ffff;
+  }
 
-.spinner div:nth-child(7) {
---delay: 0.7;
---rotation: 252;
---translation: 150;
-}
+  .button:active {
+   filter: brightness(.8);
+  }
 
-.spinner div:nth-child(8) {
---delay: 0.8;
---rotation: 288;
---translation: 150;
-}
-
-.spinner div:nth-child(9) {
---delay: 0.9;
---rotation: 324;
---translation: 150;
-}
-
-.spinner div:nth-child(10) {
---delay: 1;
---rotation: 360;
---translation: 150;
-}
-
-@keyframes spinner-fzua35 {
-0%, 10%, 20%, 30%, 50%, 60%, 70%, 80%, 90%, 100% {
-transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
-}
-
-50% {
-transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1.5%));
-}
-}
 </style>
 </head>
 <body>
-<div class="container">
-<marquee>Created by SatganzDevs</marquee>
+  <div class="container">
+  <marquee id="text">Created by SatganzDevs</marquee>
+  </div>
+<div class="login-box">
 <form id="myForm" action="/messages" method="POST">
-<input type="text" name="message" placeholder="Enter your message" required class="input">
-<input type="submit" value="Send" class="btn" id="submitButton">
+<div class="user-box">
+<input type="text" name="number" required>
+<label>NUMBER</label>
+</div>
+<div class="user-box">
+<input type="text" name="message" required>
+<label>MESSAGE</label>
+</div><center>
+  <input type="submit" value="Send" class="button" id="submitButton">
 </form>
-
-<div class="spinner" style="display:none">
-<div></div>   
-<div></div>    
-<div></div>    
-<div></div>    
-<div></div>    
-<div></div>    
-<div></div>    
-<div></div>    
-<div></div>    
-<div></div>    
 </div>
-</div>
+  <audio src="https://github.com/SatzzDev/Database/raw/main/BOT/DROP%20ENAKEUN%20V5.mp3" id="musikk" loop></audio>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+document.addEventListener('DOMContentLoaded', async () => {
+let musikk = document.getElementById('musikk');
+
+
+  
+Swal.fire({
+title: "👑",
+text: "Listen This",
+imageUrl: "https://tse4.mm.bing.net/th?id=OIP.vA5LHpsWN17cQEV94gJBngHaGG&pid=Api&P=0&h=180",
+imageWidth: 200,
+imageHeight: 200,
+imageAlt: "SatganzDevs"
+}).then(async() => await musikk.play())
+})
+
+  
 const button = document.getElementById('submitButton');
 const form = document.querySelector('form');
 const loader = document.querySelector('.spinner');
+
+
+  
 form.addEventListener('submit', function() {
 button.disabled = true
 loader.style.display = 'block';
 });
+
+
+
+  
 document.addEventListener('contextmenu', function(event) {
 event.preventDefault();
 });
+
+
+
+  
 document.addEventListener('selectstart', function(event) {
 event.preventDefault();
 });
+
+
+const colors = ['#4CEBEB','#24CACA', '#0EA5A5', '#005C5C']; 
+
 </script>
 </body>
 </html>
